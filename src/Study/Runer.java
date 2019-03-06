@@ -6,12 +6,18 @@ import java.text.SimpleDateFormat;
 public class Runer {
     public static void main(String[]args){
 
+
+
         Flight flight = new Flight();
-        flight.number = 123;
+       // Integer flightNumber = flight.getNumber();
+        flight.setNumber(432);
+        System.out.println(flight.getNumber());
+        System.out.println("Номере рейса "+ flight.getNumber());
+
         flight.cityOut = "Ulyanovsk";
         flight.cityIn = "Sevastopol";
 
-        flight.printText();
+       flight.printText();
 
         Aircraft boing = new Aircraft("boing-735", 500, 1200);
         boing.infoWindow();
@@ -25,8 +31,10 @@ public class Runer {
         try {
             flight.flightDate = ft.parse(strFlightDate);
             System.out.println(flight.flightDate);
+            System.out.println(boing);
         } catch (ParseException e) {
             System.out.println("Нераспаршена с помощью " + ft);
+
         }
 
 
