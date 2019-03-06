@@ -1,41 +1,61 @@
 package Study;
 
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Flight {
-
-    private Integer number ;
-    String cityOut;
-     String cityIn;
+    public Date flightDate;
+    private Airport cityOut;
+    Airport cityIn;
+    private Integer number;
     private Date timeFlight;
     private Date timeArrival;
-   public Date flightDate;
-    private  Aircraft aircraft;
 
-
-  //  public Flight(Integer number){
+    //private  Aircraft aircraft;
+    //public Flight(Integer number){
     //    this.number = number;
     //}
 
-    public Integer getNumber(){
-        return number;
+    public Date getTimeFlight(){
+        return timeFlight;
+    }
+
+    public void setTimeFlight(String strTimeFlight){
+        SimpleDateFormat ft = new SimpleDateFormat ("dd.MM.yyyy HH:mm");
+        try {
+            this.timeFlight = ft.parse(strTimeFlight);
+        } catch (ParseException e) {
+            System.out.println("Нераспаршена с помощью " + ft);
+        }
+    }
+
+    public Date getTimeArrival(){
+        return timeArrival;
+    }
+
+    public void setTimeArrival(Date timeArrival){
+        this.timeArrival = timeArrival;
     }
 
 
-    public void setNumber(Integer number) {
-        if (number < 0) {
+    public Integer getNumber(){
+        return this.number;
+    }
+
+    public void setNumber(Integer number1) {
+        if (number1 < 0) {
             System.out.println("Какаето херня");
         } else {
-            this.number = number;
-               }
+            this.number = number1;
+        }
     }
-    class Airaport {
-        private String airaportOut;
-        private String airaportIn;}
+
 
 
     void printText() {
         System.out.printf("\n Номер рейса %d \n Город вылета   %s \n Город прибытия %s \n  \n\n",number, cityOut, cityIn);
     }
 
-    }
+}
