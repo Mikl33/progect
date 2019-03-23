@@ -1,7 +1,6 @@
 package Study;
-import java.text.*;
-import java.util.*;
-import java.text.SimpleDateFormat;
+
+import java.sql.*;
 
 public class Runer {
     public static void main(String[]args){
@@ -10,34 +9,46 @@ public class Runer {
 
         Flight flight = new Flight();
         flight.setNumber(756789);
-        System.out.println(flight.getNumber());
         System.out.println("Номере рейса "+ flight.getNumber());
-        flight.setTimeFlight("03.03.2010 17:30");
+        flight.setTimeFlight("01.03.2010 17:30");
         System.out.println(flight.getTimeFlight());
-
-        flight.cityOut = "Ulyanovsk";
-        flight.cityIn = "Sevastopol";
+        flight.setTimeArrival("01.03.2010 18:00");
+        System.out.println(flight.getTimeArrival());
+        flight.setCityOut("Ulyanovsk");
+        flight.setCityIn ("Sevastopol");
 
        flight.printText();
 
         Aircraft boing = new Aircraft();
         boing.setName("Boing-747");
-        System.out.println(boing.getName());
+        boing.setCapacity(234);
+        boing.setMaxspeed(1000);
         boing.infoWindow();
 
-       /*  SimpleDateFormat ft = new SimpleDateFormat ("dd.MM.yyyy HH:mm");
-        String strFlightDate = "03.03.2010 17:30";
 
-        try {
-            flight.flightDate = ft.parse(strFlightDate);
-            System.out.println(flight.flightDate);
-            System.out.println(boing);
-        } catch (ParseException e) {
-            System.out.println("Нераспаршена с помощью " + ft);
 
-        }
 
-*/
+       Airport airports = new Airport("text.txt");
+    //   System.out.println("Аэропорты: " + airports); // Выводим строку массивом?
+       for (String airport  : airports.getPorts()) {
+           System.out.println(airport);
+       }
+        System.out.println("Ниже введите номер строки от 0 до 2 "); //выводим строку  методом printStr
+       airports.printStr();
+     //   System.out.println("\nВывод заданной строки  " + airports.li);
 
+
+
+//       airports = new Airport("text2.txt");
+//
+//       System.out.println("Аэропорты: ");
+//        for (String airport  : airports.getPorts()) {
+//            System.out.println(airport);
+//        }
     }
- }
+    Connection db =DriverManager.getConnection(url=,user,user);
+    Class.forName("org.postgresql.Driver");
+
+
+
+}

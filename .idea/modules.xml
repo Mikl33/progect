@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/Aira.iml" filepath="$PROJECT_DIR$/Aira.iml" />
+      <module fileurl="file://$PROJECT_DIR$/maven/java.se.maven.iml" filepath="$PROJECT_DIR$/maven/java.se.maven.iml" />
     </modules>
   </component>
 </project>
