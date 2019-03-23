@@ -4,7 +4,8 @@ import java.sql.*;
 
 public class Runer {
     public static void main(String[]args){
-
+        Connection db =DriverManager.getConnection(url=,user,user);
+        Class.forName("org.postgresql.Driver");
 
 
         Flight flight = new Flight();
@@ -46,8 +47,7 @@ public class Runer {
 //            System.out.println(airport);
 //        }
     }
-    Connection db =DriverManager.getConnection(url=,user,user);
-    Class.forName("org.postgresql.Driver");
+
 
 
 
