@@ -14,8 +14,10 @@ import org.postgresql.*;
 
 public class PostgresDatabaseFacade {
 
-    private String className = "org.postgresql.Driver";
-    private  String url = "jdbc:postgresql://localhost:5432/javase";
-    private Connection connection = null;
-
+    //private String className = "org.postgresql.Driver";
+//private  String url = "jdbc:postgresql://127.0.0.1:5432/postgres";
+//private Connection connection = null;
+//Connection connection = DriverManager.getConnection("jdbc:postgresql://127.0.0.1:5432/postgres","user","user");
+//connection.close();
+//
 }
