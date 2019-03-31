@@ -1,80 +1,99 @@
 package Study;
-import java.io.*;
-import java.nio.file.Files;
-import java.nio.file.Paths;
+
+import java.io.IOException;
 import java.sql.*;
-import java.sql.Driver;
 import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
 
-import org.postgresql.*;
-
+@SuppressWarnings("ALL")
 public class Runer {
-    public static void main(String[]args) throws SQLException {
 
-        Connect connect = new Connect();
 
-        String query = "select * from cust";
-        Statement statement = connect.getConnection().createStatement();
+    private static final String url = "jdbc:postgresql://127.0.0.1:5432/newbd";
+    private static final String user = "postgres";
+    private static final String pass = "user";
+
+    public static void main(String[] args) throws SQLException, ClassNotFoundException, IOException {
+
+        DBConnect db = new DBConnect();
+        Connection conn1 = db.getConnection(url, user, pass);
+        String query = "select * from light ORDER BY id";
+        Statement statement = conn1.createStatement();
         ResultSet result = statement.executeQuery(query);
-        while (result.next()){
-                //result.getInt(1);
-              System.out.println(result.getInt("id"));
-                System.out.printf(result.getString(2)+" " + result.getString(5));
+        System.out.println("Тут выводим перелеты из базы данных ");
+
+        ArrayList flights = new ArrayList<Flight>();
+        while (result.next()) {
+            Integer number = result.getInt("number");
+            Timestamp timeFlight = result.getTimestamp("timeFlight");
+            Integer id = result.getInt("id");
+
+            Flight flight = new Flight(id, number, timeFlight);
+            flights.add(flight);
+
+            System.out.println(flight);
+        }
+        conn1.close();
+        statement.close();
+        result.close();
+
+
+        String str = new String(flights.toString());
+        System.out.println("\nВыводим тоже самое массивом из ArrayList");
+        for (String ret : str.split(",")) {
+            System.out.println(ret);
+        }
+
+        /*Connect c = new Connect();
+        Statement stm = c.getConnection().createStatement();
+        String sql =  "CREATE TABLE MY_TABLE "+
+                "(ID INT NOT NULL,"
+                + "NAME TEXT       NOT NULL,"
+                + "AGE             INT                  NOT NULL)";
+
+            stm.executeUpdate(sql);
+            stm.close();*/
+
+        Flight flight2 = new Flight();
+        flight2.setNumber(756789);
+        flight2.setTimeFlight("01.03.2010 17:30");
+        flight2.setTimeArrival("01.03.2010 18:00");
+        flight2.setCityOut("Ulyanovsk");
+        flight2.setCityIn("Sevastopol");
+
+        flight2.printText();
+
+        DBConnect dbConnect = new DBConnect();
+        Connection conn2 = dbConnect.getConnection(url, user, pass);
+        String zapros = "select * from airoportss ORDER BY name";
+        Statement statement2 = conn2.createStatement();
+        ResultSet resultSet = statement2.executeQuery(zapros);
+        while (resultSet.next()) {
+
+            int idd = resultSet.getInt("idd");
+            String iata = resultSet.getString("iata");
+            String adress = resultSet.getString("adress");
+            String name = resultSet.getString("name");
+            System.out.println(idd+ " " + iata +"|\t "+ name +"|  " + adress+"|\t " );
+        }
+        conn2.close();
+        statement2.close();
+        resultSet.close();
+
+        Aircraft boing = new Aircraft();
+        boing.setName1("Boing-747");
+        boing.setCapacity(234);
+        boing.setMaxspeed(1000);
+        boing.infoWindow();
+
+        Aircraft aircraft = new Aircraft("text.txt");
+        for (String craft : aircraft.getAircraft()) {
+            System.out.println(craft);
         }
 
 
-
-            //Connection connection = DriverManager.getConnection("jdbc:postgresql://127.0.0.1:5432/postgres", "postgres", "user");
-
-
-            //PreparedStatement stmt = connection.prepareStatement("select * from ");
-            //ResultSet Rs = stmt.executeQuery();
-            //  while (Rs.next()) {
-            //      System.out.println(Rs.findColumn(String.valueOf(1)));
-            //  }
-            // connection.close();
-
-            Flight flight = new Flight();
-            flight.setNumber(756789);
-            System.out.println("Номере рейса " + flight.getNumber());
-            flight.setTimeFlight("01.03.2010 17:30");
-            System.out.println(flight.getTimeFlight());
-            flight.setTimeArrival("01.03.2010 18:00");
-            System.out.println(flight.getTimeArrival());
-            flight.setCityOut("Ulyanovsk");
-            flight.setCityIn("Sevastopol");
-
-            flight.printText();
-
-            Aircraft boing = new Aircraft();
-            boing.setName("Boing-747");
-            boing.setCapacity(234);
-            boing.setMaxspeed(1000);
-            boing.infoWindow();
-
-
-            Airport airports = new Airport("text.txt");
-            //   System.out.println("Аэропорты: " + airports); // Выводим строку массивом?
-            for (String airport : airports.getPorts()) {
-                System.out.println(airport);
-            }
-            System.out.println("Ниже введите номер строки от 0 до 2 "); //выводим строку  методом printStr
-            airports.printStr();
-            //   System.out.println("\nВывод заданной строки  " + airports.li);
-
-
-//       airports = new Airport("text2.txt");
-//
-//       System.out.println("Аэропорты: ");
-//        for (String airport  : airports.getPorts()) {
-//            System.out.println(airport);
-//        }
-
-
-
+        System.out.println("\nНиже введите номер строки от 1 до 4 "); //выводим строку  методом printStr
+        aircraft.printStr();
 
     }
-    }
+}
 

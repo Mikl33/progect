@@ -1,73 +1,44 @@
 package Study;
 
-import java.io.*;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
-import java.sql.Driver;
-import org.postgresql.*;
-
 public class Airport {
-    private List<String> ports = new ArrayList<>();
-
-    public Airport(String file) {
-        try (BufferedReader br = new BufferedReader(new FileReader(file))) {
-            String line;
-            while ((line = br.readLine()) != null) {
-                ports.add(line);
-            }
-        } catch (FileNotFoundException e) {
-            System.out.println("tt");
-        } catch (IOException e) {
-            System.out.println("fg");
-        }
-//
-    }
-
-        public Airport(List<String> ports) {
-        this.ports = ports;
-    }
-
-    public List<String> getPorts() {
-        return ports;
-   }
+     private Integer idd;
+     private String name;
+     private String adress;
+     private String iata;
 
 
-      void printStr()  {
-          String li;
-          Integer n;
+public  Airport(){
 
-          Scanner scn =new Scanner(System.in);
-          n = scn.nextInt();
-          if (n>3 && n<1)
-              System.out.println("неверный ввод");
+}
+     public void setName(String name) {
+          this.name = name;
+     }
 
-          else
-          {
-              try {
-                  li = Files.readAllLines(Paths.get("text.txt")).get(n-1);
-                  System.out.println(li);
-              } catch (IOException e) {
-                  e.printStackTrace();
-              }
+     public void setAdress(String adress) {
+          this.adress = adress;
+     }
 
-          }
-      }
+     public void setIdd(Integer idd) {
+          this.idd = idd;
+     }
 
+     public void setIata(String iata) {
+          this.iata = iata;
+     }
 
-    @Override
-    public String toString() {
-        return "Airport{" +
-                "ports=" + ports +
-                '}';
-   }
+     public String getIata() {
+          return iata;
+     }
 
+     public String getAdress() {
+          return adress;
+     }
 
+     public String getName() {
+          return name;
+     }
 
-
+     public Integer getIdd() {
+          return idd;
+     }
 }

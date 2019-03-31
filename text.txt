@@ -1,3 +1,4 @@
-123 name1
-name2
-name3
+Boeing 737 100    1967 2592 103
+Boeing 737-900ER  2007 5925 215
+Airbus A319       1995 6850 103
+Airbus A319(KNR)  2011 6850 120
